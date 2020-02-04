@@ -1,0 +1,58 @@
+﻿<Window x:Class="CoolBook.Wpf.View.ChatWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CoolBook.Wpf.View"
+        mc:Ignorable="d"
+        Title="ChatWindowView" Height="390.122" Width="524.146">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="lblName" Grid.Column="0" Content="Name: " Width="60"/>
+            <TextBlock x:Name="txbName" Grid.Column="1" Text="{Binding SpaceBook.Name}" Margin="3" />
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="160"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="160"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="lblGift" Grid.Column="0" Content="Gift: " Width="60"/>
+            <ComboBox x:Name="cmbGift" ItemsSource="{Binding GiftTypes}" SelectedItem="{Binding SelectedGiftType}" Grid.Column="1" Margin="3" />
+            <Label x:Name="lblTo" Grid.Column="2" Content="To: " HorizontalContentAlignment="Right" Margin="3"/>
+            <ComboBox x:Name="cmbGiftTo" ItemsSource="{Binding SpaceBook.Manager.Values}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedGiftTo}" Grid.Column="3" Margin="3" />
+            <Button x:Name="btnSendGift" Grid.Column="4" Content="Send" Margin="3" Click="BtnSendGift_Click" />
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="160"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="160"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="lblPoke" Grid.Column="0" Content="Poke: " Width="60"/>
+            <ComboBox x:Name="cmbPoke" ItemsSource="{Binding PokeTypes}" SelectedItem="{Binding SelectedPokeType}" Grid.Column="1" Margin="3" />
+            <Label x:Name="lblPokeTo" Grid.Column="2" Content="To: " HorizontalContentAlignment="Right" Margin="3"/>
+            <ComboBox x:Name="cmbPokeTo" ItemsSource="{Binding SpaceBook.Manager.Values}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedPokeTo}" Grid.Column="3" Margin="3" />
+            <Button x:Name="btnSendPoke" Grid.Column="4" Content="Send" Margin="3" Click="BtnSendPoke_Click" />
+        </Grid>
+        <GroupBox Header="Messages" Grid.Row="3">
+            <ScrollViewer>
+                <TextBlock x:Name="lstMessages" ScrollViewer.CanContentScroll="True" Text="{Binding SpaceBook.Messages}"></TextBlock>
+            </ScrollViewer>
+        </GroupBox>
+    </Grid>
+</Window>
